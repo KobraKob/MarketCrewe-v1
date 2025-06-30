@@ -1,0 +1,2 @@
+1. "Don't be a stinky sailor! Grab our best-selling soap and shampoo now and smell like a champ! Shop now: [link]"
+2. "Your beard (and your buddies) will thank you! Get 15% off our soap and shampoo duo this week only! Buy now: [link]"
