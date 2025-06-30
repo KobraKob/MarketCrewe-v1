@@ -1,1 +1,1 @@
-#DrSquatch #NaturalSoap #BeardCare #LumberjackVibes #MensGrooming #BeardGoals #PineTarSoap #AllNatural #GroomingEssentials #BeardLove
+#DrSquatch #NaturalSoap #MensGrooming #PineTarSoap #BayRum #CedarwoodSoap #BlackPepperSoap #LavenderSoap #GrapefruitSoap #ActivatedCharcoalSoap
