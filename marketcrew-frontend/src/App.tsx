@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Auth from "./Auth";
-import Home from "./Home"; // Import the Home component
+import Home from "./Home";
 
-const BACKEND_URL = "http://localhost:8000"; // Change for production
+const BACKEND_URL = "http://localhost:8000";
 
 type FormData = {
   brand_name: string;
@@ -11,7 +13,7 @@ type FormData = {
   audience: string;
   tone: string;
   goals: string;
-  products: string; // Update type to string
+  products: string;
 };
 
 type GeneratedContent = {
@@ -25,9 +27,22 @@ type GeneratedContent = {
 };
 
 function App() {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentView, setCurrentView] = useState<'home' | 'auth' | 'app'>('home');
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login'); // To control Auth component mode
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [formData, setFormData] = useState<FormData>({
+    brand_name: "",
+    industry: "",
+    audience: "",
+    tone: "friendly",
+    goals: "",
+    products: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [allGeneratedContent, setAllGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -47,18 +62,16 @@ function App() {
     localStorage.removeItem('access_token');
     setIsLoggedIn(false);
     setCurrentView('home');
-    // Reset form data and generated content on logout
     setFormData({
       brand_name: "",
       industry: "",
       audience: "",
       tone: "friendly",
       goals: "",
-      products: "", // Reset to empty string
+      products: "",
     });
     setLoading(false);
     setShowOptions(false);
-    setGeneratedContent("");
     setAllGeneratedContent(null);
     setEmail("");
   };
@@ -73,20 +86,9 @@ function App() {
     setCurrentView('auth');
   };
 
-  const [formData, setFormData] = useState<FormData>({
-    brand_name: "",
-    industry: "",
-    audience: "",
-    tone: "friendly",
-    goals: "",
-    products: "", // Initialize with empty string
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [showOptions, setShowOptions] = useState(false);
-  const [generatedContent, setGeneratedContent] = useState<string>("");
-  const [allGeneratedContent, setAllGeneratedContent] = useState<GeneratedContent | null>(null);
-  const [email, setEmail] = useState("");
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -97,7 +99,6 @@ function App() {
     setLoading(true);
     try {
       const token = localStorage.getItem('access_token');
-      console.log('Token from localStorage before /generate request:', token);
       const requestData = {
         ...formData,
         products: formData.products.split(',').map(p => p.trim()).filter(p => p),
@@ -108,11 +109,10 @@ function App() {
         }
       });
       setAllGeneratedContent(response.data.content);
-      setGeneratedContent(response.data.content.weekly_posts);
       setShowOptions(true);
     } catch (error) {
       console.error(error);
-      alert("Failed to generate content. Check console for details. (Rate limit or other API error)");
+      alert("Failed to generate content. Check console for details.");
     } finally {
       setLoading(false);
     }
@@ -158,17 +158,15 @@ function App() {
   const formatContent = (content: string) => {
     return content.split('\n').map((line, index) => {
       if (line.startsWith('# ')) {
-        return <h1 key={index} className="text-2xl font-bold mb-4 text-gray-800">{line.substring(2)}</h1>;
+        return <h1 key={index} className="text-2xl font-bold mb-4 text-navy-secondary">{line.substring(2)}</h1>;
       } else if (line.startsWith('## ')) {
-        return <h2 key={index} className="text-xl font-semibold mb-3 mt-6 text-gray-700">{line.substring(3)}</h2>;
-      } else if (line.startsWith('• ')) {
-        return <li key={index} className="ml-4 mb-1">{line.substring(2)}</li>;
-      } else if (line.startsWith('- ')) {
-        return <li key={index} className="ml-4 mb-1">{line.substring(2)}</li>;
+        return <h2 key={index} className="text-xl font-semibold mb-3 mt-6 text-navy-primary">{line.substring(3)}</h2>;
+      } else if (line.startsWith('• ') || line.startsWith('- ')) {
+        return <li key={index} className="ml-4 mb-1 text-navy-secondary/80">{line.substring(2)}</li>;
       } else if (line.startsWith('*') && line.endsWith('*')) {
-        return <p key={index} className="italic text-gray-600 mt-4">{line.substring(1, line.length - 1)}</p>;
+        return <p key={index} className="italic text-rust mt-4">{line.substring(1, line.length - 1)}</p>;
       } else if (line.trim()) {
-        return <p key={index} className="mb-3 text-gray-700">{line}</p>;
+        return <p key={index} className="mb-3 text-navy-secondary/80">{line}</p>;
       }
       return <br key={index} />;
     });
@@ -182,215 +180,290 @@ function App() {
   } else {
     contentToRender = (
       <>
-        {/* Main App Content */}
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 flex flex-col items-center justify-center p-4">
+        <div className="min-h-screen bg-cream flex flex-col items-center justify-center p-4">
           <div className="w-full max-w-4xl">
             {/* Header */}
-            <div className="text-center mb-12">
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-12"
+            >
               <div className="mb-6">
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 animate-pulse">
+                <h1 className="text-4xl md:text-5xl font-bold text-gradient-primary mb-4">
                   ✨ AI Content Generator
                 </h1>
-                <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: '8rem' }}
+                  className="h-1 w-32 bg-gradient-to-r from-navy-primary to-rust mx-auto rounded-full"
+                />
               </div>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-navy-secondary/80 max-w-2xl mx-auto leading-relaxed">
                 Transform your brand story into compelling marketing content with the power of AI
               </p>
-            </div>
+            </motion.div>
 
-            {/* Main Card */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 overflow-hidden transition-all duration-500 hover:shadow-3xl hover:scale-[1.02]">
-              {/* Form Section */}
-              <div className="p-8 lg:p-12">
-                <div className="flex items-center mb-8">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-white font-bold">1</span>
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-800">Tell us about your brand</h2>
-                </div>
-                
-                <div className="space-y-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <FormField
-                      label="Brand Name"
-                      id="brand_name"
-                      name="brand_name"
-                      value={formData.brand_name}
-                      onChange={handleChange}
-                      placeholder="Your company name"
-                      icon="🏢"
-                    />
-                    
-                    <FormField
-                      label="Industry"
-                      id="industry"
-                      name="industry"
-                      value={formData.industry}
-                      onChange={handleChange}
-                      placeholder="e.g. Fashion, Tech, Food"
-                      icon="🏭"
-                    />
-                    
-                    <FormField
-                      label="Target Audience"
-                      id="audience"
-                      name="audience"
-                      value={formData.audience}
-                      onChange={handleChange}
-                      placeholder="e.g. Young professionals, Parents"
-                      icon="👥"
-                    />
-                    
-                    <div>
-                      <label htmlFor="tone" className="flex items-center text-sm font-semibold text-gray-700 mb-3">
-                        <span className="mr-2">🎭</span>
-                        Brand Tone
-                      </label>
-                      <select
-                        id="tone"
-                        name="tone"
-                        value={formData.tone}
-                        onChange={handleChange}
-                        className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white shadow-sm hover:shadow-md"
-                      >
-                        <option value="friendly">😊 Friendly</option>
-                        <option value="professional">💼 Professional</option>
-                        <option value="humorous">😄 Humorous</option>
-                        <option value="formal">🎩 Formal</option>
-                        <option value="casual">👋 Casual</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <FormField
-                    label="Goals & Objectives"
-                    id="goals"
-                    name="goals"
-                    value={formData.goals}
-                    onChange={handleChange}
-                    placeholder="What do you want to achieve with this content? Describe your marketing goals..."
-                    textarea
-                    rows={4}
-                    icon="🎯"
-                  />
-                  
-                  <FormField
-                    label="Products & Services"
-                    id="products"
-                    name="products"
-                    value={formData.products}
-                    onChange={handleChange}
-                    placeholder="List your key products or services (comma-separated)"
-                    textarea
-                    rows={3}
-                    icon="📦"
-                  />
-                  
-                  <div className="pt-6">
-                    <button
-                      type="button"
-                      onClick={handleGenerate}
-                      disabled={loading || !formData.brand_name.trim()}
-                      className={`w-full py-6 px-8 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${loading ? 'animate-pulse' : ''}`}
-                    >
-                      {loading ? (
-                        <>
-                          <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent mr-3"></div>
-                          Crafting Your Content...
-                        </>
-                      ) : (
-                        <>
-                          <span className="mr-3">✨</span>
-                          Generate Content Magic
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
+            {/* Main Form */}
+<motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  className="bg-white rounded-2xl shadow-xl overflow-hidden border border-cream/50"
+>
+  <div className="p-8 lg:p-10">
+    {/* Form Header */}
+    <div className="flex items-center mb-10">
+      <div className="relative">
+        <div className="w-10 h-10 bg-gradient-to-br from-navy-primary to-rust rounded-full flex items-center justify-center mr-4">
+          <span className="text-white font-bold text-lg">1</span>
+        </div>
+        <div className="absolute -inset-2 rounded-full border-2 border-navy-primary/20 animate-pulse"></div>
+      </div>
+      <div>
+        <h2 className="text-3xl font-bold text-navy-secondary">Tell us about your brand</h2>
+        <p className="text-navy-primary/70 mt-1">Fill in the details to generate personalized content</p>
+      </div>
+    </div>
+    
+    {/* Form Fields */}
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <FormField
+          label="Brand Name"
+          id="brand_name"
+          name="brand_name"
+          value={formData.brand_name}
+          onChange={handleChange}
+          placeholder="Your company name"
+          icon={
+            <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary">
+              🏢
+            </div>
+          }
+        />
+        
+        <FormField
+          label="Industry"
+          id="industry"
+          name="industry"
+          value={formData.industry}
+          onChange={handleChange}
+          placeholder="e.g. Fashion, Tech, Food"
+          icon={
+            <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary">
+              🏭
+            </div>
+          }
+        />
+        
+        <FormField
+          label="Target Audience"
+          id="audience"
+          name="audience"
+          value={formData.audience}
+          onChange={handleChange}
+          placeholder="e.g. Young professionals, Parents"
+          icon={
+            <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary">
+              👥
+            </div>
+          }
+        />
+        
+        <div>
+          <label htmlFor="tone" className="flex items-center text-sm font-medium text-navy-primary mb-3">
+            <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary mr-2">
+              🎭
+            </div>
+            Brand Tone
+          </label>
+          <div className="relative">
+            <select
+              id="tone"
+              name="tone"
+              value={formData.tone}
+              onChange={handleChange}
+              className="form-select w-full pl-12 pr-4 py-3 border-2 border-navy-primary/10 rounded-xl focus:ring-2 focus:ring-navy-primary/30 focus:border-navy-primary bg-white appearance-none"
+            >
+              <option value="friendly">😊 Friendly</option>
+              <option value="professional">💼 Professional</option>
+              <option value="humorous">😄 Humorous</option>
+              <option value="formal">🎩 Formal</option>
+              <option value="casual">👋 Casual</option>
+            </select>
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <div className="w-8 h-8 bg-navy-primary/5 rounded-lg flex items-center justify-center">
+                <span className="text-lg">🎭</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      
+      <FormField
+        label="Goals & Objectives"
+        id="goals"
+        name="goals"
+        value={formData.goals}
+        onChange={handleChange}
+        placeholder="What do you want to achieve with this content? Describe your marketing goals..."
+        textarea
+        rows={4}
+        icon={
+          <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary">
+            🎯
+          </div>
+        }
+      />
+      
+      <FormField
+        label="Products & Services"
+        id="products"
+        name="products"
+        value={formData.products}
+        onChange={handleChange}
+        placeholder="List your key products or services (comma-separated)"
+        textarea
+        rows={3}
+        icon={
+          <div className="w-6 h-6 bg-navy-primary/10 rounded-full flex items-center justify-center text-navy-primary">
+            📦
+          </div>
+        }
+      />
+      
+      {/* Submit Button */}
+      <div className="pt-8">
+        <motion.button
+          whileHover={{ 
+            scale: 1.02,
+            boxShadow: "0 10px 25px rgba(37, 77, 112, 0.3)"
+          }}
+          whileTap={{ scale: 0.98 }}
+          type="button"
+          onClick={handleGenerate}
+          disabled={loading || !formData.brand_name.trim()}
+          className="relative w-full py-5 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-navy-primary to-rust hover:from-navy-primary/90 hover:to-rust/90 transition-all duration-300 shadow-lg overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          {/* Animated background */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-navy-primary/30 to-rust/30"
+            initial={{ x: "-100%" }}
+            animate={{ x: loading ? "100%" : "0%" }}
+            transition={{ 
+              duration: loading ? 2 : 0,
+              repeat: loading ? Infinity : 0,
+              ease: "linear"
+            }}
+          />
+          
+          <div className="relative z-10 flex items-center justify-center">
+            {loading ? (
+              <>
+                <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent mr-3"></div>
+                <span>Crafting Your Content...</span>
+              </>
+            ) : (
+              <>
+                <span className="mr-3 text-xl">✨</span>
+                <span>Generate Content Magic</span>
+              </>
+            )}
+          </div>
+        </motion.button>
+        
+        {!formData.brand_name.trim() && (
+          <motion.p 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-sm text-rust mt-3 text-center"
+          >
+            Please enter your brand name to continue
+          </motion.p>
+        )}
+      </div>
+    </div>
+  </div>
+</motion.div>
 
             {/* Results Section */}
             {showOptions && allGeneratedContent && (
-              <div className="mt-12 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 overflow-hidden transition-all duration-500 animate-bounce-in">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="card-premium mt-12"
+              >
                 <div className="p-8 lg:p-12">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-3">
                         <span className="text-white font-bold">2</span>
                       </div>
-                      <h2 className="text-3xl font-bold text-gray-800">Your Generated Content</h2>
+                      <h2 className="text-3xl font-bold text-navy-secondary">Your Generated Content</h2>
                     </div>
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       onClick={handleDownload}
-                      className="flex items-center px-6 py-3 text-sm font-semibold text-blue-600 hover:text-white hover:bg-blue-600 border-2 border-blue-600 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+                      className="btn-outline flex items-center"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                       Download
-                    </button>
+                    </motion.button>
                   </div>
                   
-                  {/* Display all generated content in separate cards */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {allGeneratedContent.weekly_posts && (
-                      <ContentCard title="Weekly Posts" content={allGeneratedContent.weekly_posts} formatContent={formatContent} />
-                    )}
-                    {allGeneratedContent.ad_copies && (
-                      <ContentCard title="Ad Copies" content={allGeneratedContent.ad_copies} formatContent={formatContent} />
-                    )}
-                    {allGeneratedContent.visual_briefs && (
-                      <ContentCard title="Visual Briefs" content={allGeneratedContent.visual_briefs} formatContent={formatContent} />
-                    )}
-                    {allGeneratedContent.hashtags && (
-                      <ContentCard title="Hashtags" content={allGeneratedContent.hashtags} formatContent={formatContent} />
-                    )}
-                    {allGeneratedContent.platform_split && (
-                      <ContentCard title="Platform Split" content={allGeneratedContent.platform_split} formatContent={formatContent} />
-                    )}
-                    {allGeneratedContent.whatsapp_broadcast && (
-                      <ContentCard title="WhatsApp Broadcast" content={allGeneratedContent.whatsapp_broadcast} formatContent={formatContent} />
-                    )}
+                    {Object.entries(allGeneratedContent).map(([key, value]) => (
+                      value && (
+                        <ContentCard 
+                          key={key} 
+                          title={key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                          content={value} 
+                          formatContent={formatContent} 
+                        />
+                      )
+                    ))}
                   </div>
 
-                  <div className="mt-10 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+                  <div className="mt-10 p-6 bg-gradient-to-r from-cream/50 to-cream/30 rounded-xl border border-rust/20">
                     <div className="flex items-center mb-4">
-                      <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-rust to-navy-primary rounded-full flex items-center justify-center mr-3">
                         <span className="text-white font-bold">3</span>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-800">Share your content</h3>
+                      <h3 className="text-xl font-bold text-navy-secondary">Share your content</h3>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-4">
                       <div className="flex-1">
                         <textarea
-                          className="w-full px-6 py-4 border-2 border-purple-200 rounded-xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white shadow-sm resize-none"
+                          className="form-input w-full"
                           placeholder="Enter email addresses (comma-separated)"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           rows={3}
                         />
                       </div>
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         onClick={handleSendEmail}
-                        className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center font-semibold"
+                        className="btn-secondary px-8 py-4 flex items-center justify-center"
                       >
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         Send Email
-                      </button>
+                      </motion.button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
           
-          {/* Footer */}
-          <footer className="mt-16 text-center text-gray-500 text-sm">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mb-4"></div>
-            <p>  AI Content Generator. Crafted with  and AI</p>
+          <footer className="mt-16 text-center text-navy-secondary/60 text-sm">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-navy-primary/30 to-transparent mx-auto mb-4"></div>
+            <p>© {new Date().getFullYear()} MarketCrew. Crafted with ❤️ and AI</p>
           </footer>
         </div>
       </>
@@ -398,37 +471,57 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 flex flex-col">
-      {/* Navigation Bar */}
-      <nav className="bg-white/80 backdrop-blur-sm shadow-md p-4 flex justify-between items-center">
-        <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+    <div className="min-h-screen bg-cream flex flex-col">
+      <nav className="bg-white/90 backdrop-blur-sm shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-2xl font-bold text-gradient-primary cursor-pointer"
+          onClick={handleHomeClick}
+        >
           MarketCrew
-        </div>
+        </motion.div>
         <div>
           {isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-              Logout
-            </button>
+            <div className="flex gap-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleHomeClick}
+                className="btn-outline px-4 py-2"
+              >
+                Home
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleLogout}
+                className="btn-secondary px-4 py-2"
+              >
+                Logout
+              </motion.button>
+            </div>
           ) : (
             <>
-              {currentView !== 'auth' && ( // Only show if not already on auth page
-                <>
-                  <button
+              {currentView !== 'auth' && (
+                <div className="flex gap-2">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={handleShowLogin}
-                    className="px-4 py-2 mr-2 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50 transition-colors duration-300"
+                    className="btn-outline px-4 py-2"
                   >
                     Login
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={handleShowSignup}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300"
+                    className="btn-primary px-4 py-2"
                   >
                     Sign Up
-                  </button>
-                </>
+                  </motion.button>
+                </div>
               )}
             </>
           )}
@@ -439,12 +532,11 @@ function App() {
   );
 }
 
-// Enhanced FormField component
 interface FormFieldProps {
   label: string;
   id: string;
   name: string;
-  value: string; // Revert to string type
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
   textarea?: boolean;
@@ -464,8 +556,11 @@ const FormField: React.FC<FormFieldProps> = ({
   icon,
 }) => {
   return (
-    <div className="group">
-      <label htmlFor={id} className="flex items-center text-sm font-semibold text-gray-700 mb-3">
+    <motion.div 
+      whileHover={{ y: -2 }}
+      className="group"
+    >
+      <label htmlFor={id} className="flex items-center text-sm font-semibold text-navy-primary mb-3">
         {icon && <span className="mr-2">{icon}</span>}
         {label}
       </label>
@@ -477,7 +572,7 @@ const FormField: React.FC<FormFieldProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           rows={rows}
-          className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white shadow-sm hover:shadow-md resize-none group-hover:border-blue-300"
+          className="form-input w-full"
         />
       ) : (
         <input
@@ -487,10 +582,10 @@ const FormField: React.FC<FormFieldProps> = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white shadow-sm hover:shadow-md group-hover:border-blue-300"
+          className="form-input w-full"
         />
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -502,12 +597,15 @@ interface ContentCardProps {
 
 const ContentCard: React.FC<ContentCardProps> = ({ title, content, formatContent }) => {
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-100 shadow-inner flex flex-col">
-      <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
+    <motion.div 
+      whileHover={{ y: -5 }}
+      className="bg-white p-6 rounded-xl border-2 border-cream shadow-inner flex flex-col"
+    >
+      <h3 className="text-xl font-bold text-navy-secondary mb-4">{title}</h3>
       <div className="prose max-w-none flex-grow">
         {formatContent(content)}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

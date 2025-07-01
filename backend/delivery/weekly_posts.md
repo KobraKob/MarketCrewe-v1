@@ -1,36 +1,36 @@
-### **Sopkal: 7-Day Content Calendar**
+### **Dr. Squatch: 7-Day Content Calendar**
 
 ---
-#### **Day 1: Keyboard**
-*   **Title:** "10 Tips to Improve Your Typing Speed with Sopkal Keyboards"
-*   **Post:** "Are you tired of typing slowly? With Sopkal keyboards, you can improve your typing speed and accuracy. Here are 10 tips to get you started: 1) Practice regularly, 2) Use the correct finger placement, 3) Keep your hands in a neutral position, and more. Upgrade your typing experience today with Sopkal!"
+#### **Day 1: Soap**
+*   **Title:** "The Reason Your Wife Still Loves You (It's Not Just the Soap, But...)"
+*   **Post:** "Hey fellas, let's get real. A good soap can be the unsung hero of your daily routine. Not only does it keep you clean, but it also keeps your skin healthy and smelling great. Trust us, your wife will appreciate the extra effort you put into smelling like a field of lavender instead of last night's BBQ. Our soap is made with natural ingredients that'll make you feel like a brand new man. Try it out and see the difference for yourself!"
 
 ---
-#### **Day 2: Mouse**
-*   **Title:** "The Evolution of Computer Mice: A Story of Innovation"
-*   **Post:** "From the first mechanical mice to the latest wireless designs, the computer mouse has come a long way. At Sopkal, we're proud to be part of this evolution. Our mice are designed for precision and comfort. Learn more about the history of computer mice and how Sopkal is shaping the future."
+#### **Day 2: Soap**
+*   **Title:** "The Soap Solution to Your Wife's Complaints"
+*   **Post:** "Tired of hearing 'you're too itchy' or 'you smell like a gym'? Our soap is here to save the day (and your marriage)! Made with ingredients like oatmeal and shea butter, our soap is gentle on your skin and leaves you smelling fresh all day. Your wife will thank you, and so will your skin."
 
 ---
-#### **Day 3: Keyboard**
-*   **Title:** "The Benefits of Customizable Keyboards for Gamers"
-*   **Post:** "Gamers know that having the right equipment can make all the difference. Customizable keyboards from Sopkal allow you to personalize your gaming experience. With features like macro keys and backlighting, you can gain a competitive edge. Discover how Sopkal keyboards can enhance your gaming performance."
+#### **Day 3: Soap**
+*   **Title:** "The Science Behind Our Soap (It's Not Rocket Science, But It's Close)"
+*   **Post:** "Ever wondered what's in your soap? We're breaking it down for you. Our soap is made with natural ingredients like coconut oil and essential oils, which not only smell great but also provide real benefits for your skin. From moisturizing to antibacterial properties, our soap has got you covered."
 
 ---
-#### **Day 4: Mouse**
-*   **Title:** "Ergonomic Design: How Sopkal Mice Can Improve Your Computing Experience"
-*   **Post:** "Spending long hours at the computer can lead to discomfort and injury. Sopkal mice are designed with ergonomics in mind, providing a comfortable fit for your hand. Learn how our mice can help reduce strain and improve your overall computing experience."
+#### **Day 4: Soap**
+*   **Title:** "The Best Soap for the Modern Man (That's You)"
+*   **Post:** "You're a busy guy with a lot on your plate. You need a soap that can keep up. Our soap is designed with the modern man in mind - it's tough on dirt and grime, but gentle on your skin. Plus, it smells great, so you'll feel confident all day long."
 
 ---
-#### **Day 5: Keyboard**
-*   **Title:** "Keyboard Maintenance 101: Tips from Sopkal Experts"
-*   **Post:** "To keep your keyboard performing at its best, regular maintenance is essential. Sopkal experts share their top tips on how to clean and care for your keyboard. From dust removal to keycap cleaning, we've got you covered."
+#### **Day 5: Soap**
+*   **Title:** "How Our Soap Can Save Your Marriage (Okay, Maybe Not, But It's Still Great)"
+*   **Post:** "Let's be real, a good soap can only do so much. But seriously, our soap can help you feel more confident and refreshed, which can only be a good thing for your marriage. Plus, it's a great way to show your wife you care about the little things (like smelling good)."
 
 ---
-#### **Day 6: Mouse**
-*   **Title:** "Why Wireless Mice are the Future of Computing"
-*   **Post:** "Wireless technology has revolutionized the way we interact with our computers. Sopkal wireless mice offer the freedom and flexibility you need to work or play without being tied to your desk. Discover the benefits of wireless mice and how they're changing the computing landscape."
+#### **Day 6: Soap**
+*   **Title:** "The Benefits of Using a Natural Soap (Besides Not Being a Toxic Robot)"
+*   **Post:** "Ditch the harsh chemicals and artificial fragrances found in many soaps. Our natural soap is better for your skin, and the environment. You'll feel the difference, and so will your wife (in a good way, we promise)."
 
 ---
-#### **Day 7: Keyboard**
-*   **Title:** "Unlock Your Productivity with Sopkal Keyboards"
-*   **Post:** "Are you looking to boost your productivity? Sopkal keyboards are designed to help you work more efficiently. With features like programmable keys and advanced switch technology, you can streamline your workflow and achieve more in less time. Upgrade to a Sopkal keyboard today and start unlocking your full potential."
+#### **Day 7: Soap**
+*   **Title:** "Join the Soap Revolution (Your Wife Will Thank You)"
+*   **Post:** "Ready to level up your soap game? Join the thousands of men who have switched to our natural soap and seen real results. Your skin (and your wife) will thank you. Try it out today and start feeling like a brand new man!"

@@ -8,10 +8,10 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
+      <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<App />} />
       </Routes>
-      </BrowserRouter>
+    </BrowserRouter>
   </React.StrictMode>
 )

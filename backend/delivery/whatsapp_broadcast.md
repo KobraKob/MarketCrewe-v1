@@ -1,2 +1,2 @@
-1. Upgrade your workspace with Sopkal's best-selling keyboard & mouse! Limited time offer, shop now: [link]
-2. Boost productivity with Sopkal's ergonomic keyboard & mouse! Get yours today and get 10% off: [link]
+1. "Wife approved, husband loved! Get 20% off our best-selling soap this week only! Order now: [link]"
+2. "Soap up, stress down! Limited time offer: Buy 1 Get 1 Free on our refreshing soap bars. Shop now: [link]"

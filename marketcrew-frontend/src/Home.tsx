@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface HomeProps {
   onLoginClick: () => void;
@@ -7,43 +8,109 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ onLoginClick, onSignupClick }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-4xl text-center">
+    <div className="min-h-screen bg-cream flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-5xl text-center">
         {/* Header */}
-        <div className="mb-12">
-          <div className="mb-6">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 animate-pulse">
+        <motion.div 
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-16"
+        >
+          <div className="mb-8">
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient-primary mb-6"
+            >
               ✨ AI Content Generator
-            </h1>
-            <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            </motion.h1>
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: '10rem' }}
+              transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+              className="h-1.5 w-40 bg-gradient-to-r from-navy-primary to-rust mx-auto rounded-full mb-8"
+            />
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-lg md:text-xl text-navy-secondary/80 max-w-3xl mx-auto leading-relaxed"
+          >
             Transform your brand story into compelling marketing content with the power of AI
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Call to Action Buttons */}
-        <div className="space-x-4 mt-8">
-          <button
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex flex-col sm:flex-row justify-center gap-6 mt-12"
+        >
+          <motion.button
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 10px 30px rgba(37, 77, 112, 0.4)"
+            }}
+            whileTap={{ scale: 0.98 }}
             onClick={onSignupClick}
-            className="px-8 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="btn-primary px-10 py-5 text-lg md:text-xl font-semibold"
           >
-            Sign Up
-          </button>
-          <button
+            Get Started Free
+          </motion.button>
+          <motion.button
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(37, 77, 112, 0.1)"
+            }}
+            whileTap={{ scale: 0.98 }}
             onClick={onLoginClick}
-            className="px-8 py-4 rounded-xl font-bold text-lg text-blue-600 bg-white border-2 border-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="px-10 py-5 rounded-xl font-semibold text-lg md:text-xl text-navy-primary bg-white border-2 border-navy-primary transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Login
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
+
+        {/* Trust Indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.6 }}
+          className="mt-16 flex flex-col items-center"
+        >
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-navy-primary/30 to-transparent mb-4" />
+          <p className="text-sm text-navy-secondary/60">
+            Trusted by marketing teams worldwide
+          </p>
+          <div className="flex flex-wrap justify-center gap-8 mt-6">
+            {["BrandA", "BrandB", "BrandC", "BrandD"].map((brand, index) => (
+              <motion.div
+                key={brand}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
+                className="text-navy-primary/70 font-medium"
+              >
+                {brand}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
 
       {/* Footer */}
-      <footer className="mt-16 text-center text-gray-500 text-sm">
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mb-4"></div>
-        <p>© {new Date().getFullYear()} AI Content Generator. Crafted with ❤️ and AI</p>
-      </footer>
+      <motion.footer 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.6 }}
+        className="mt-20 text-center text-navy-secondary/60 text-sm"
+      >
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-navy-primary/30 to-transparent mx-auto mb-4" />
+        <p>© {new Date().getFullYear()} MarketCrew. Crafted with ❤️ and AI</p>
+      </motion.footer>
     </div>
   );
 };
