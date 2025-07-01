@@ -1,35 +1,36 @@
-### **Dr. Squatch: 7-Day Content Calendar**
-
-#### **Day 1: Pine Tar Soap**
-*   **Title:** "The Power of Pine Tar: Unlocking its Benefits for Your Skin"
-*   **Post:** "Did you know pine tar has been used for centuries to soothe and calm irritated skin? Our Pine Tar Soap is made with this natural ingredient to help alleviate itchiness and leave your skin feeling refreshed. Try it out and say goodbye to dry, itchy skin!"
+### **Sopkal: 7-Day Content Calendar**
 
 ---
-#### **Day 2: Cedarwood Soap**
-*   **Title:** "Why Cedarwood is a Game-Changer for Your Skin and Mind"
-*   **Post:** "Cedarwood is more than just a great scent - it's a natural insect repellent and has antifungal properties that can help keep your skin healthy. Our Cedarwood Soap will leave you feeling refreshed and revitalized, while also keeping those pesky bugs at bay."
+#### **Day 1: Keyboard**
+*   **Title:** "10 Tips to Improve Your Typing Speed with Sopkal Keyboards"
+*   **Post:** "Are you tired of typing slowly? With Sopkal keyboards, you can improve your typing speed and accuracy. Here are 10 tips to get you started: 1) Practice regularly, 2) Use the correct finger placement, 3) Keep your hands in a neutral position, and more. Upgrade your typing experience today with Sopkal!"
 
 ---
-#### **Day 3: Bay Rum Soap**
-*   **Title:** "The Classic Scent of Bay Rum: A Timeless Tradition"
-*   **Post:** "Bay Rum is a classic scent that's been around for generations. Our Bay Rum Soap is made with natural ingredients and has a warm, inviting aroma that's perfect for everyday use. Experience the tradition for yourself and make it a part of your daily routine."
+#### **Day 2: Mouse**
+*   **Title:** "The Evolution of Computer Mice: A Story of Innovation"
+*   **Post:** "From the first mechanical mice to the latest wireless designs, the computer mouse has come a long way. At Sopkal, we're proud to be part of this evolution. Our mice are designed for precision and comfort. Learn more about the history of computer mice and how Sopkal is shaping the future."
 
 ---
-#### **Day 4: Black Pepper Soap**
-*   **Title:** "Spice Up Your Routine with Black Pepper Soap"
-*   **Post:** "Black Pepper is known for its invigorating properties, and our Black Pepper Soap is no exception. The natural antioxidants and anti-inflammatory properties will leave your skin feeling refreshed and rejuvenated. Add a little spice to your daily routine and see the difference for yourself."
+#### **Day 3: Keyboard**
+*   **Title:** "The Benefits of Customizable Keyboards for Gamers"
+*   **Post:** "Gamers know that having the right equipment can make all the difference. Customizable keyboards from Sopkal allow you to personalize your gaming experience. With features like macro keys and backlighting, you can gain a competitive edge. Discover how Sopkal keyboards can enhance your gaming performance."
 
 ---
-#### **Day 5: Lavender Soap**
-*   **Title:** "Unwind with the Calming Effects of Lavender Soap"
-*   **Post:** "After a long day, unwind with our Lavender Soap. The calming effects of lavender will help soothe your skin and mind, leaving you feeling relaxed and refreshed. Make it a part of your bedtime routine and wake up to a brighter tomorrow."
+#### **Day 4: Mouse**
+*   **Title:** "Ergonomic Design: How Sopkal Mice Can Improve Your Computing Experience"
+*   **Post:** "Spending long hours at the computer can lead to discomfort and injury. Sopkal mice are designed with ergonomics in mind, providing a comfortable fit for your hand. Learn how our mice can help reduce strain and improve your overall computing experience."
 
 ---
-#### **Day 6: Charcoal Soap**
-*   **Title:** "Detoxify Your Skin with the Power of Charcoal"
-*   **Post:** "Charcoal is a natural detoxifier that can help draw out impurities and leave your skin feeling clean and refreshed. Our Charcoal Soap is made with natural ingredients and is perfect for those looking to deep clean their skin. Try it out and experience the benefits for yourself."
+#### **Day 5: Keyboard**
+*   **Title:** "Keyboard Maintenance 101: Tips from Sopkal Experts"
+*   **Post:** "To keep your keyboard performing at its best, regular maintenance is essential. Sopkal experts share their top tips on how to clean and care for your keyboard. From dust removal to keycap cleaning, we've got you covered."
 
 ---
-#### **Day 7: Sandalwood Soap**
-*   **Title:** "Indulge in the Rich, Woody Scent of Sandalwood Soap"
-*   **Post:** "Sandalwood is a luxurious and woody scent that's perfect for everyday use. Our Sandalwood Soap is made with natural ingredients and has a rich, smooth texture that will leave your skin feeling pampered. Treat yourself to a little luxury and make it a part of your daily routine."
+#### **Day 6: Mouse**
+*   **Title:** "Why Wireless Mice are the Future of Computing"
+*   **Post:** "Wireless technology has revolutionized the way we interact with our computers. Sopkal wireless mice offer the freedom and flexibility you need to work or play without being tied to your desk. Discover the benefits of wireless mice and how they're changing the computing landscape."
+
+---
+#### **Day 7: Keyboard**
+*   **Title:** "Unlock Your Productivity with Sopkal Keyboards"
+*   **Post:** "Are you looking to boost your productivity? Sopkal keyboards are designed to help you work more efficiently. With features like programmable keys and advanced switch technology, you can streamline your workflow and achieve more in less time. Upgrade to a Sopkal keyboard today and start unlocking your full potential."

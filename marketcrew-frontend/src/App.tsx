@@ -11,7 +11,7 @@ type FormData = {
   audience: string;
   tone: string;
   goals: string;
-  products: string[];
+  products: string; // Update type to string
 };
 
 type GeneratedContent = {
@@ -54,7 +54,7 @@ function App() {
       audience: "",
       tone: "friendly",
       goals: "",
-      products: [],
+      products: "", // Reset to empty string
     });
     setLoading(false);
     setShowOptions(false);
@@ -79,7 +79,7 @@ function App() {
     audience: "",
     tone: "friendly",
     goals: "",
-    products: [],
+    products: "", // Initialize with empty string
   });
 
   const [loading, setLoading] = useState(false);
@@ -90,11 +90,7 @@ function App() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    if (name === "products") {
-      setFormData({ ...formData, [name]: value.split(',').map(item => item.trim()).filter(item => item) });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleGenerate = async () => {
@@ -102,7 +98,11 @@ function App() {
     try {
       const token = localStorage.getItem('access_token');
       console.log('Token from localStorage before /generate request:', token);
-      const response = await axios.post(`${BACKEND_URL}/generate`, formData, {
+      const requestData = {
+        ...formData,
+        products: formData.products.split(',').map(p => p.trim()).filter(p => p),
+      };
+      const response = await axios.post(`${BACKEND_URL}/generate`, requestData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -278,7 +278,7 @@ function App() {
                     label="Products & Services"
                     id="products"
                     name="products"
-                    value={formData.products.join(', ')}
+                    value={formData.products}
                     onChange={handleChange}
                     placeholder="List your key products or services (comma-separated)"
                     textarea
@@ -390,7 +390,7 @@ function App() {
           {/* Footer */}
           <footer className="mt-16 text-center text-gray-500 text-sm">
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mb-4"></div>
-            <p>© {new Date().getFullYear()} AI Content Generator. Crafted with ❤️ and AI</p>
+            <p>  AI Content Generator. Crafted with  and AI</p>
           </footer>
         </div>
       </>
@@ -402,7 +402,7 @@ function App() {
       {/* Navigation Bar */}
       <nav className="bg-white/80 backdrop-blur-sm shadow-md p-4 flex justify-between items-center">
         <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-          ✨ MarketCrew
+          MarketCrew
         </div>
         <div>
           {isLoggedIn ? (
@@ -444,7 +444,7 @@ interface FormFieldProps {
   label: string;
   id: string;
   name: string;
-  value: string;
+  value: string; // Revert to string type
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
   textarea?: boolean;

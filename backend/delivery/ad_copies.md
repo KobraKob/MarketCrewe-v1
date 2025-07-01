@@ -1,54 +1,21 @@
-### Pine Tar Soap
-#### Ad Headlines
-* "Tough on Odor"
-* "Get Fresh, Stay Fresh"
+## Keyboard
+### Ad Headlines
+* "Type Smarter"
+* "Key to Productivity"
 
-#### Ad Description
-"Say goodbye to body odor with our Pine Tar Soap. Natural ingredients, real results."
+### Ad Description
+"Upgrade your typing experience with Sopkal's premium keyboard, designed for comfort and precision."
 
-#### Call to Action
+### Call to Action
 "Shop Now"
 
-### Coconut Oil Soap
-#### Ad Headlines
-* "Moisturize, Don't Irritate"
-* "Soft Skin, No Compromise"
+## Mouse
+### Ad Headlines
+* "Navigate with Ease"
+* "Click with Precision"
 
-#### Ad Description
-"Get the nourishment of coconut oil in a soap that'll leave your skin feeling soft and clean."
+### Ad Description
+"Take control with Sopkal's advanced mouse, engineered for smooth navigation and accurate clicks."
 
-#### Call to Action
-"Try It Today"
-
-### Cedarwood Soap
-#### Ad Headlines
-* "Outdoor Fresh, Every Day"
-* "Nature's Scent, Your Soap"
-
-#### Ad Description
-"Experience the great outdoors with our Cedarwood Soap. Refreshing, natural, and effective."
-
-#### Call to Action
-"Buy Now"
-
-### Bay Rum Soap
-#### Ad Headlines
-* "Classic Scent, Modern Soap"
-* "Timeless Freshness, Guaranteed"
-
-#### Ad Description
-"Discover the invigorating scent of Bay Rum in a soap that's as refreshing as it is effective."
-
-#### Call to Action
-"Order Now"
-
-### Black Lava Soap
-#### Ad Headlines
-* "Detoxify, Rejuvenate"
-* "Deep Clean, Real Results"
-
-#### Ad Description
-"Unleash the power of activated charcoal with our Black Lava Soap. Purify your skin, naturally."
-
-#### Call to Action
-"Get Yours"
+### Call to Action
+"Discover More"

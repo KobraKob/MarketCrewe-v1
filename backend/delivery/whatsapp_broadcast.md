@@ -1,2 +1,2 @@
-1. "Limited time offer! Get 15% off our best-selling Pine Tar soap. Shop now: [link]"
-2. "New week, new scents! Try our fresh Soap of the Week and level up your shower game. Buy now: [link]"
+1. Upgrade your workspace with Sopkal's best-selling keyboard & mouse! Limited time offer, shop now: [link]
+2. Boost productivity with Sopkal's ergonomic keyboard & mouse! Get yours today and get 10% off: [link]
