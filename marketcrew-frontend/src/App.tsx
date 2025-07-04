@@ -42,6 +42,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [allGeneratedContent, setAllGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [activeTab, setActiveTab] = useState<keyof GeneratedContent | null>(null);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -110,9 +111,10 @@ function App() {
       });
       setAllGeneratedContent(response.data.content);
       setShowOptions(true);
+      setActiveTab('weekly_posts'); // Set the default active tab
     } catch (error) {
       console.error(error);
-      alert("Failed to generate content. Check console for details.");
+      // Removed alert, will use a more graceful error handling later
     } finally {
       setLoading(false);
     }
@@ -413,17 +415,30 @@ function App() {
                     </motion.button>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {Object.entries(allGeneratedContent).map(([key, value]) => (
-                      value && (
-                        <ContentCard 
-                          key={key} 
-                          title={key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                          content={value} 
-                          formatContent={formatContent} 
-                        />
-                      )
+                  <div className="flex border-b border-navy-primary/10 mb-6">
+                    {Object.keys(allGeneratedContent).map((key) => (
+                      <button
+                        key={key}
+                        onClick={() => setActiveTab(key as keyof GeneratedContent)}
+                        className={`px-6 py-3 text-lg font-semibold transition-colors duration-300 ${
+                          activeTab === key
+                            ? 'border-b-2 border-rust text-rust'
+                            : 'text-navy-primary/70 hover:text-navy-primary'
+                        }`}
+                      >
+                        {key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      </button>
                     ))}
+                  </div>
+
+                  <div className="p-6 bg-white rounded-lg shadow-inner border border-navy-primary/10">
+                    {activeTab && (
+                      <ContentCard
+                        title={activeTab.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                        content={allGeneratedContent[activeTab] || ''}
+                        formatContent={formatContent}
+                      />
+                    )}
                   </div>
 
                   <div className="mt-10 p-6 bg-gradient-to-r from-cream/50 to-cream/30 rounded-xl border border-rust/20">
@@ -597,15 +612,12 @@ interface ContentCardProps {
 
 const ContentCard: React.FC<ContentCardProps> = ({ title, content, formatContent }) => {
   return (
-    <motion.div 
-      whileHover={{ y: -5 }}
-      className="bg-white p-6 rounded-xl border-2 border-cream shadow-inner flex flex-col"
-    >
-      <h3 className="text-xl font-bold text-navy-secondary mb-4">{title}</h3>
-      <div className="prose max-w-none flex-grow">
+    <div className="bg-white p-6 rounded-xl flex flex-col">
+      <h3 className="text-2xl font-bold text-navy-secondary mb-4">{title}</h3>
+      <div className="prose max-w-none flex-grow overflow-y-auto">
         {formatContent(content)}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

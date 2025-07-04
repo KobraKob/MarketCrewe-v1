@@ -1,2 +1,2 @@
-1. "Wife approved, husband loved! Get 20% off our best-selling soap this week only! Order now: [link]"
-2. "Soap up, stress down! Limited time offer: Buy 1 Get 1 Free on our refreshing soap bars. Shop now: [link]"
+1. "New Arrivals Alert! Check out our fresh tshirts, hoodies & sweatshirts. Shop Now: [link]"
+2. "Limited Time Offer! Get your hands on our best-selling tees & hoodies. Order Now: [link]"
